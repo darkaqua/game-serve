@@ -1,0 +1,10 @@
+{
+  "name": "@darkaqua/game-serve",
+  "version": "0.0.0",
+  "imports": {
+    "deno/": "https://deno.land/std@0.194.0/",
+    "deno_web_serve": "https://deno.land/x/deno_web_serve@v2.8.1/mod.ts"
+  },
+  "lock": false,
+  "nodeModulesDir": true
+}
