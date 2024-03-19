@@ -34,7 +34,7 @@ export const serveGame = async () => {
 		command.spawn();
 	}
 
-	let swapFileMap = {};
+	let swapFileMap: any = {};
 
 	await serve(
 		async (request: Request) => {
