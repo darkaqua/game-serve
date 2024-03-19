@@ -1,4 +1,4 @@
-import { build } from 'deno_web_serve';
+import { build } from 'https://deno.land/x/deno_web_serve@v2.8.1/mod.ts';
 import { load } from 'deno/dotenv/mod.ts';
 
 
