@@ -71,7 +71,7 @@ export const bundle = (
 	plugins: string[],
 ) => {
 	const environments = JSON.parse(envs).reduce(
-		(obj, key) => ({ ...obj, [key]: Deno.env.get(key) }),
+		(obj: any, key: any) => ({ ...obj, [key]: Deno.env.get(key) }),
 		{},
 	);
 	const command = new Deno.Command(Deno.execPath(), {
@@ -145,7 +145,7 @@ export const getBuildArgs = ({
 };
 
 export const getFileList = async () => {
-	const fileList = {};
+	const fileList: any = {};
 	const _getFileList = async (dirname: string) => {
 		for await (const dirEntry of Deno.readDir(dirname)) {
 			const entryPath = `${dirname}/${dirEntry.name}`;
@@ -163,7 +163,7 @@ export const getFileList = async () => {
 	return fileList;
 };
 
-export const getObjectComparison = (obj1, obj2) => {
+export const getObjectComparison = (obj1: any, obj2: any) => {
 	let keys1 = Object.keys(obj1);
 	let keys2 = Object.keys(obj2);
 
@@ -171,12 +171,12 @@ export const getObjectComparison = (obj1, obj2) => {
 
 	let addedKeys = keys2.filter(key => !keys1.includes(key));
 
-	let modifiedValues = keys1.reduce((acc, key) => {
+	let modifiedValues = keys1.reduce((acc: any, key) => {
 		if (keys2.includes(key) && obj1[key] !== obj2[key]) {
 			acc[key] = { old: obj1[key], new: obj2[key] };
 		}
 		return acc;
-	}, {});
+	}, {} as any);
 
 	return { deletedKeys, modifiedValues, addedKeys };
 };

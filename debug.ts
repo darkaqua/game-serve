@@ -19,7 +19,7 @@ export const serveGame = async () => {
 				socketClientList.length
 			})`,
 		);
-		socketClientList.forEach((ws: WebSocket) => ws.send(JSON.stringify(data)));
+		socketClientList.forEach((ws: WebSocket | undefined) => ws?.send(JSON.stringify(data)));
 	};
 
 	{
@@ -52,6 +52,7 @@ export const serveGame = async () => {
 					sendMessageToClients({ type: 'reload' });
 					return new Response();
 				case '/_hotSwap':
+					if(!request.body) break;
 					const reader = request.body.getReader();
 					let text = '';
 					while (true) {
@@ -69,7 +70,7 @@ export const serveGame = async () => {
 
 					sendMessageToClients({
 						type: 'hotSwap',
-						data: list.map(({ name, mtime, globalReference }) => ({
+						data: list.map(({ name, mtime, globalReference }: any) => ({
 							name,
 							mtime,
 							globalReference,
